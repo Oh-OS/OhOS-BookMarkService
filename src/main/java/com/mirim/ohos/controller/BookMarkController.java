@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bookmarks")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BookMarkController {
 
     private final BookMarkService bookMarkService;
@@ -32,5 +33,11 @@ public class BookMarkController {
     public ResponseEntity<BookMarkResponseDto> getBookMarkById(@PathVariable Long id) {
         BookMarkResponseDto bookMark = bookMarkService.getBookMarkById(id);
         return ResponseEntity.ok().body(bookMark);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBookMark(@PathVariable Long id) {
+        bookMarkService.deleteBookMarkById(id);
+        return ResponseEntity.noContent().build();
     }
 }
