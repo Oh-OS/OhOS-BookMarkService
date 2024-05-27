@@ -42,4 +42,9 @@ public class BookMarkService {
                 .orElseThrow(() -> new IllegalArgumentException("BookMark not found for id: " + id));
         return BookMarkResponseDto.from(bookMark);
     }
+
+    @Transactional
+    public void deleteBookMarkById(Long id) {
+        bookMarkRepository.deleteById(id);
+    }
 }
